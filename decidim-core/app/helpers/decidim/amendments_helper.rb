@@ -4,8 +4,8 @@ module Decidim
   # A Helper to render and link amendments to resources.
   module AmendmentsHelper
     def amend_button_for(amendable)
-      if amendable.component.settings.amendments_enabled?
-        cell "decidim/amend_button_card", amendable, context: { current_user: current_user }
+      if amendable.amendable?
+        cell "decidim/amendable/amend_button_card", amendable
       end
     end
 
