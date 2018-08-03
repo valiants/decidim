@@ -163,6 +163,9 @@ ignore_unused:
   - decidim.proposals.collaborative_drafts.filters*
   - decidim.proposals.collaborative_drafts.show.withdraw
   - decidim.proposals.collaborative_drafts.show.publish
+  - decidim.amendments.amendable.error
+  - decidim.amendments.emendation.announcement.*
+  - decidim.amendments.accept.error
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
