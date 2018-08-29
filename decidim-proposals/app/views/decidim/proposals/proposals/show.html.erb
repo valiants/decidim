@@ -82,7 +82,7 @@
 
     <%= cell "decidim/proposals/endorsers_list", @proposal %>
 
-    <%= amendments_for @proposal %>
+    <%= amendments_for @proposal if @proposal.amendable? %>
   </div>
 </div>
 <%= attachments_for @proposal %>
