@@ -159,6 +159,26 @@ FactoryBot.define do
       end
     end
 
+    trait :with_minimum_votes_per_user do
+      transient do
+        minimum_votes_per_user { 3 }
+      end
+
+      settings do
+        {
+          minimum_votes_per_user: minimum_votes_per_user
+        }
+      end
+    end
+
+    trait :with_participatory_texts_enabled do
+      settings do
+        {
+          participatory_texts_enabled: true
+        }
+      end
+    end
+
     trait :with_amendments_enabled do
       settings do
         {
@@ -175,7 +195,7 @@ FactoryBot.define do
       user_groups { [] }
     end
 
-    title { Faker::Lorem.sentence }
+    title { generate(:title) }
     body { Faker::Lorem.sentences(3).join("\n") }
     component { create(:proposal_component) }
     published_at { Time.current }
@@ -186,14 +206,23 @@ FactoryBot.define do
         users = evaluator.users || [create(:user, organization: proposal.component.participatory_space.organization)]
         users.each_with_index do |user, idx|
           user_group = evaluator.user_groups[idx]
-          Decidim::Coauthorship.create(author: user, user_group: user_group, coauthorable: proposal)
+          proposal.coauthorships.build(author: user, user_group: user_group)
         end
       end
+    end
+
+    trait :published do
+      published_at { Time.current }
+    end
+
+    trait :unpublished do
+      published_at { nil }
     end
 
     trait :official do
       after :build do |proposal|
         proposal.coauthorships.clear
+        proposal.coauthorships.build(author: proposal.organization)
       end
     end
 
@@ -218,7 +247,7 @@ FactoryBot.define do
 
     trait :with_answer do
       state { "accepted" }
-      answer { Decidim::Faker::Localized.sentence }
+      answer { generate_localized_title }
       answered_at { Time.current }
     end
 
@@ -227,8 +256,8 @@ FactoryBot.define do
     end
 
     trait :hidden do
-      moderation do
-        create(:moderation, hidden_at: Time.current)
+      after :create do |proposal|
+        create(:moderation, hidden_at: Time.current, reportable: proposal)
       end
     end
 
@@ -274,7 +303,7 @@ FactoryBot.define do
       user_groups { [] }
     end
 
-    title { Faker::Lorem.sentence }
+    title { generate(:title) }
     body { Faker::Lorem.sentences(3).join("\n") }
     component { create(:proposal_component) }
     address { "#{Faker::Address.street_name}, #{Faker::Address.city}" }
@@ -285,7 +314,7 @@ FactoryBot.define do
         users = evaluator.users || [create(:user, organization: collaborative_draft.component.participatory_space.organization)]
         users.each_with_index do |user, idx|
           user_group = evaluator.user_groups[idx]
-          Decidim::Coauthorship.create(author: user, user_group: user_group, coauthorable: collaborative_draft)
+          collaborative_draft.coauthorships.build(author: user, user_group: user_group)
         end
       end
     end

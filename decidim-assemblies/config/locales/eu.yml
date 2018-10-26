@@ -238,6 +238,9 @@ eu:
               not_ceased: Ez da gelditu
             filter_by: Iragazi arabera
             search: Search
+        content_blocks:
+          highlighted_assemblies:
+            max_results: Erakusteko elementu gehienen kopurua
       assembly_members:
         index:
           members: Bazkideek
@@ -258,6 +261,8 @@ eu:
         public: Publiko
       index:
         title: Biltzarrak
+      last_activity:
+        new_assembly: Batzar berria
       pages:
         home:
           highlighted_assemblies:
@@ -329,7 +334,9 @@ eu:
         assembly:
           take_part: Parte hartu
         index:
+          organizational_chart: Organigrama
           promoted_assemblies: Batzar nabarmenduak
+          reset_chart: Berrezarri
         order_by_assemblies:
           assemblies:
             one: "%{count} batzarra"

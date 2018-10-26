@@ -85,9 +85,12 @@ ca:
     gamification:
       badges:
         initiatives:
+          conditions:
+            - Anar a l'espai de participació d'Intiatives
+            - Seguiu els passos per crear una nova iniciativa
+          description: Aquesta distinció es concedeix quan es llancen noves iniciatives, s'uneixen amb altres per dur-les a terme.
           description_another: Aquest usuari ha publicat %{score} iniciatives.
           description_own: Tens %{score} iniciatives publicades.
-          explanation: Els usuaris obtenen aquesta distinció mitjançant la publicació de les seves iniciatives.
           name: Iniciatives publicades
           next_level_in: Publica %{score} iniciatives més per arribar al següent nivell!
           unearned_another: Aquest usuari encara no ha publicat cap iniciativa.
@@ -102,6 +105,9 @@ ca:
             no_members_yet: No hi ha membres al comitè promotor
             revoke: Revocar
             title: Membres del comitè
+        content_blocks:
+          highlighted_initiatives:
+            max_results: Quantitat màxima d'elements que es mostraran
         initiatives:
           edit:
             accept: Accepta la iniciativa
@@ -327,6 +333,8 @@ ca:
         status_change_for: La iniciativa %{title} ha canviat d'estat
         technical_validation_body_for: La iniciativa %{title} ha demanat la seva validació tècnica.
         technical_validation_for: La iniciativa %{title} ha demanat la seva validació tècnica.
+      last_activity:
+        new_initiative: Nova iniciativa
       pages:
         home:
           highlighted_initiatives:

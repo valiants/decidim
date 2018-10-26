@@ -238,6 +238,9 @@ gl:
               not_ceased: Non cesou
             filter_by: Filtrar por
             search: Busca
+        content_blocks:
+          highlighted_assemblies:
+            max_results: Cantidade máxima de elementos para mostrar
       assembly_members:
         index:
           members: Membros
@@ -258,6 +261,8 @@ gl:
         public: Público
       index:
         title: Asembleas
+      last_activity:
+        new_assembly: Nova montaxe
       pages:
         home:
           highlighted_assemblies:
@@ -329,7 +334,9 @@ gl:
         assembly:
           take_part: Tomar parte en
         index:
+          organizational_chart: Organigrama
           promoted_assemblies: Asembleas destacadas
+          reset_chart: Restablecer
         order_by_assemblies:
           assemblies:
             one: "Asemblea %{count}"

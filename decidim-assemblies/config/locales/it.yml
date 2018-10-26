@@ -238,6 +238,9 @@ it:
               not_ceased: Non è cessato
             filter_by: Filtra per
             search: Ricerca
+        content_blocks:
+          highlighted_assemblies:
+            max_results: Quantità massima di elementi da mostrare
       assembly_members:
         index:
           members: Utenti
@@ -258,6 +261,8 @@ it:
         public: Pubblico
       index:
         title: assemblee
+      last_activity:
+        new_assembly: Nuovo assemblaggio
       pages:
         home:
           highlighted_assemblies:
@@ -329,7 +334,9 @@ it:
         assembly:
           take_part: Partecipa
         index:
+          organizational_chart: Grafico organizzativo
           promoted_assemblies: Assiemi evidenziati
+          reset_chart: Reset
         order_by_assemblies:
           assemblies:
             one: "%{count} montaggio"

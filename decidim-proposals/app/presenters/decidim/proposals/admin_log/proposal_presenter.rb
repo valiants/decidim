@@ -15,6 +15,10 @@ module Decidim
       class ProposalPresenter < Decidim::Log::BasePresenter
         private
 
+        def resource_presenter
+          @resource_presenter ||= Decidim::Proposals::Log::ResourcePresenter.new(action_log.resource, h, action_log.extra["resource"])
+        end
+
         def diff_fields_mapping
           {
             title: "Decidim::Proposals::AdminLog::ValueTypes::ProposalTitleBodyPresenter",
@@ -27,7 +31,7 @@ module Decidim
 
         def action_string
           case action
-          when "answer", "create"
+          when "answer", "create", "update"
             "decidim.proposals.admin_log.proposal.#{action}"
           else
             super

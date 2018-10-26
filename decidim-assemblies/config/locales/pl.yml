@@ -244,6 +244,9 @@ pl:
               not_ceased: Nie przestał
             filter_by: Filtruj według
             search: Szukaj
+        content_blocks:
+          highlighted_assemblies:
+            max_results: Maksymalna ilość elementów do pokazania
       assembly_members:
         index:
           members: Członkowie
@@ -264,6 +267,8 @@ pl:
         public: Publiczny
       index:
         title: Zespoły
+      last_activity:
+        new_assembly: Nowy montaż
       pages:
         home:
           highlighted_assemblies:
@@ -335,7 +340,9 @@ pl:
         assembly:
           take_part: Wziąć udział
         index:
+          organizational_chart: Schemat organizacyjny
           promoted_assemblies: Podświetlone zespoły
+          reset_chart: Nastawić
         order_by_assemblies:
           assemblies:
             one: "%{count} montaż"

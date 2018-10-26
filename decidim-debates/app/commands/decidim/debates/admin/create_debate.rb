@@ -28,9 +28,7 @@ module Decidim
         attr_reader :debate, :form
 
         def create_debate
-          @debate = Decidim.traceability.create!(
-            Debate,
-            form.current_user,
+          params = {
             category: form.category,
             title: form.title,
             description: form.description,
@@ -38,7 +36,15 @@ module Decidim
             instructions: form.instructions,
             end_time: form.end_time,
             start_time: form.start_time,
-            component: form.current_component
+            component: form.current_component,
+            author: form.current_organization
+          }
+
+          @debate = Decidim.traceability.create!(
+            Debate,
+            form.current_user,
+            params,
+            visibility: "all"
           )
         end
 

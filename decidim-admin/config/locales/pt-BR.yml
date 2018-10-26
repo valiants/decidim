@@ -36,6 +36,7 @@ pt-BR:
         organization_url: URL da organização
         redirect_uri: Redirecionar URI
       organization:
+        badges_enabled: Ativar emblemas
         cta_button_path: Caminho do botão Chamar para Ação
         cta_button_text: Texto do botão Chamar para Ação
         default_locale: Idioma padrão
@@ -103,9 +104,6 @@ pt-BR:
         organization_url: URL da organização
         redirect_uri: Redirecionar URI
         site: Site
-  date:
-    formats:
-      datepicker: "%d/%m/%Y"
   decidim:
     admin:
       actions:
@@ -614,6 +612,7 @@ pt-BR:
         new:
           create: Convite
           title: Convide o usuário como administrador
+      view_public_page: Ver página pública
     forms:
       errors:
         impersonate_user:
@@ -654,7 +653,3 @@ pt-BR:
           title: Configurações
         users:
           title: Usuários
-  time:
-    formats:
-      datepicker: "%d/%m/%Y"
-      timepicker: "%d/%m/%Y %H:%M"

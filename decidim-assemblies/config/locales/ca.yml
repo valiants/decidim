@@ -238,6 +238,9 @@ ca:
               not_ceased: No cessat
             filter_by: Filtra per
             search: Cerca
+        content_blocks:
+          highlighted_assemblies:
+            max_results: Quantitat màxima d'elements que es mostraran
       assembly_members:
         index:
           members: Membres
@@ -258,6 +261,8 @@ ca:
         public: Públic
       index:
         title: Assemblees
+      last_activity:
+        new_assembly: Nou muntatge
       pages:
         home:
           highlighted_assemblies:
@@ -329,7 +334,9 @@ ca:
         assembly:
           take_part: Participa
         index:
+          organizational_chart: Organigrama
           promoted_assemblies: Assemblees destacades
+          reset_chart: Restablir
         order_by_assemblies:
           assemblies:
             one: "%{count} assemblea"

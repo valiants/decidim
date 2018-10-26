@@ -85,9 +85,12 @@ it:
     gamification:
       badges:
         initiatives:
+          conditions:
+            - Vai allo spazio di partecipazione delle iniziative
+            - Segui i passaggi per creare una nuova iniziativa
+          description: Questo badge è garantito quando lanci nuove iniziative, collaborando con altri per realizzarle.
           description_another: Questo utente ha ottenuto %{score} iniziative pubblicate.
           description_own: Hai pubblicato %{score} iniziative.
-          explanation: Gli utenti ottengono questo badge pubblicando le loro iniziative.
           name: Iniziative pubblicate
           next_level_in: Ricevi altre %{score} iniziative pubblicate per raggiungere il livello successivo!
           unearned_another: Questo utente non ha ancora ottenuto alcuna iniziativa pubblicata.
@@ -102,6 +105,9 @@ it:
             no_members_yet: Non ci sono membri nel comitato promotore
             revoke: Revocare
             title: membri del Comitato
+        content_blocks:
+          highlighted_initiatives:
+            max_results: Quantità massima di elementi da mostrare
         initiatives:
           edit:
             accept: Accetta l'iniziativa
@@ -327,6 +333,8 @@ it:
         status_change_for: L'iniziativa %{title} ha cambiato il suo stato
         technical_validation_body_for: L'iniziativa %{title} ha richiesto la sua convalida tecnica.
         technical_validation_for: L'iniziativa %{title} ha richiesto la sua convalida tecnica.
+      last_activity:
+        new_initiative: Nuova iniziativa
       pages:
         home:
           highlighted_initiatives:

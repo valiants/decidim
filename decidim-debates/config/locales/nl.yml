@@ -100,6 +100,8 @@ nl:
           close_window: Sluit venster
           share: Delen
           share_link: Link delen
+      last_activity:
+        new_debate_at_html: "<span>Nieuw debat op %{link}</span>"
       models:
         debate:
           fields:
@@ -133,3 +135,15 @@ nl:
           email_outro: Je hebt deze melding ontvangen omdat je %{participatory_space_title} volgt. Je kan de meldingen uitschakelen door te klikken op de voorgaande link.
           email_subject: Debatten zijn nu beschikbaar in %{participatory_space_title}
           notification_title: Je kan nu beginnen met <a href="%{resource_path}">nieuwe debatten</a> in <a href="%{participatory_space_url}">%{participatory_space_title}</a>
+    gamification:
+      badges:
+        commented_debates:
+          conditions:
+            - Kies een open debat om deel te nemen
+          description: Deze badge wordt toegekend wanneer u actief deelneemt aan de verschillende debatten door uw opmerkingen achter te laten.
+          description_another: Deze gebruiker heeft deelgenomen aan %{score} debatten.
+          description_own: Je hebt deelgenomen aan %{score} debatten.
+          name: debatten
+          next_level_in: Neem deel aan %{score} meer debatten om het volgende niveau te bereiken!
+          unearned_another: Deze gebruiker heeft nog geen deelgenomen aan een debat.
+          unearned_own: Je hebt nog deelgenomen aan debatten.

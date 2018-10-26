@@ -50,6 +50,8 @@ module Decidim
   autoload :ViewHooks, "decidim/view_hooks"
   autoload :ContentBlockRegistry, "decidim/content_block_registry"
   autoload :ContentBlockManifest, "decidim/content_block_manifest"
+  autoload :MetricRegistry, "decidim/metric_registry"
+  autoload :MetricManifest, "decidim/metric_manifest"
   autoload :NewsletterEncryptor, "decidim/newsletter_encryptor"
   autoload :Searchable, "decidim/searchable"
   autoload :SearchResourceFieldsMapper, "decidim/search_resource_fields_mapper"
@@ -105,7 +107,7 @@ module Decidim
 
   # Exposes a configuration option: The application available locales.
   config_accessor :available_locales do
-    %w(en ca es es-PY eu fi fr gl hu it nl pt pt-BR ru sv uk)
+    %w(en ca de es es-PY eu fi fr gl hu it nl pt pt-BR ru sv uk)
   end
 
   # Exposes a configuration option: an array of symbols representing processors
@@ -212,6 +214,11 @@ module Decidim
   # Time window in which the throttling is applied.
   config_accessor :throttling_period do
     1.minute
+  end
+
+  # Time window were users can access the website even if their email is not confirmed.
+  config_accessor :unconfirmed_access_for do
+    2.days
   end
 
   # A base path for the uploads. If set, make sure it ends in a slash.
@@ -380,5 +387,10 @@ module Decidim
   # Public: Stores an instance of Traceability
   def self.traceability
     @traceability ||= Traceability.new
+  end
+
+  # Public: Stores an instance of ContentBlockRegistry
+  def self.metrics_registry
+    @metrics_registry ||= MetricRegistry.new
   end
 end

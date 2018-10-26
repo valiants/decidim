@@ -65,6 +65,11 @@ module Decidim
         Decidim.content_blocks.register(:homepage, :highlighted_initiatives) do |content_block|
           content_block.cell = "decidim/initiatives/content_blocks/highlighted_initiatives"
           content_block.public_name_key = "decidim.initiatives.content_blocks.highlighted_initiatives.name"
+          content_block.settings_form_cell = "decidim/initiatives/content_blocks/highlighted_initiatives_settings_form"
+
+          content_block.settings do |settings|
+            settings.attribute :max_results, type: :integer, default: 4
+          end
         end
       end
 
@@ -86,10 +91,19 @@ module Decidim
         Decidim::Gamification.register_badge(:initiatives) do |badge|
           badge.levels = [1, 5, 15, 30, 50]
 
-          badge.reset = lambda { |user|
-            Decidim::Initiative.where(
-              author: user
-            ).published.count
+          badge.valid_for = [:user, :user_group]
+
+          badge.reset = lambda { |model|
+            if model.is_a?(User)
+              Decidim::Initiative.where(
+                author: model,
+                user_group: nil
+              ).published.count
+            elsif model.is_a?(UserGroup)
+              Decidim::Initiative.where(
+                user_group: model
+              ).published.count
+            end
           }
         end
       end

@@ -14,9 +14,6 @@ es-PY:
         password_confirmation: Confirma tu contraseña
         personal_url: URL personal
         remove_avatar: Eliminar imagen de perfil
-        user_group_document_number: Número de documento acreditativo
-        user_group_name: Nombre de la Organización
-        user_group_phone: Teléfono de la organización
     models:
       decidim/attachment_created_event: Archivo adjunto
       decidim/component_published_event: Componente activo
@@ -32,9 +29,6 @@ es-PY:
         password: Contraseña
         password_confirmation: Confirmación de contraseña
         remember_me: Recuérdame
-        user_group_document_number: Número de documento acreditativo
-        user_group_name: Nombre de la Organización
-        user_group_phone: Teléfono de la organización
     models:
       decidim/user:
         one: Usuario
@@ -52,6 +46,7 @@ es-PY:
     formats:
       decidim_short: "%d/%m/%Y"
       decidim_with_month_name: "%d %B %Y"
+      decidim_with_month_name_short: "%d %b"
   decidim:
     account:
       data_portability_export:
@@ -184,6 +179,11 @@ es-PY:
           invalid_field: "%{field} valor %{value} no es válido."
           ok: De acuerdo
           title: No autorizado
+        unconfirmed:
+          confirmation_instructions: 'Si no ha recibido las instrucciones de confirmación, puede volver a solicitarlas:'
+          explanation_html: Para realizar esta acción, debe estar autorizado, antes de hacerlo, debe confirmar su correo electrónico <strong>%{email}</strong>.
+          request_confirmation_instructions: Solicitar instrucciones de confirmación.
+          title: confirme su email
     collapsible_list:
       hidden_elements_count:
         one: y 1 más
@@ -216,6 +216,15 @@ es-PY:
         name: Banner de contenido resaltado
       how_to_participate:
         name: Como participar
+      html:
+        html_content: Contenido HTML
+        name: Bloque de HTML
+      last_activity:
+        name: Última actividad
+        title: Última actividad
+        view_all: Ver todo
+      metrics:
+        name: Métricas de la organización
       stats:
         name: Estadísticas de la organización
       sub_hero:
@@ -230,6 +239,8 @@ es-PY:
         download_data: Descargar los datos
         download_data_description: Un archivo con toda la información asociada con la cuenta se enviará a <strong>%{user_email}</strong>
         request_data: Solicitar datos
+    datepicker:
+      help_text: 'Formato esperado: %{datepicker_format}'
     devise:
       omniauth_registrations:
         create:
@@ -250,8 +261,6 @@ es-PY:
           sign_up: Regístrate
           sign_up_as:
             legend: Inscribirse como
-            user: Individual
-            user_group: Organización/Colectivo
           subtitle: Crea una cuenta para poder participar en los debates y apoyar las propuestas.
           terms: los términos y condiciones de uso
           tos_agreement: Al registrarte aceptas %{link}.
@@ -380,11 +389,41 @@ es-PY:
         error: Hay un error en este campo.
       remove_this_file: Eliminar este archivo
     gamification:
+      all_badges_link: Ver todas las insignias disponibles.
       badges:
+        continuity:
+          conditions:
+            - Viene aquí a menudo
+          description: Este distintivo se otorga cuando visitas la plataforma de forma regular. ¡Nos gusta tenerte por aquí!
+          description_another: Este usuario se ha conectado durante %{score} días consecutivos en algún momento.
+          description_own: Te has conectado por %{score} días consecutivos en algún momento.
+          name: Continuidad
+          next_level_in: '¡Conéctate durante %{score} días consecutivos para llegar al siguiente nivel!'
+          unearned_another: Este usuario no se ha registrado durante más de un día consecutivo.
+          unearned_own: No te has conectado por más de un día consecutivo.
+        followers:
+          conditions:
+            - Estar activo y seguir a otras personas seguramente hará que otras personas te sigan.
+          description: Esta insignia se otorga cuando alcanzas un cierto número de seguidores. %{organization_name} es una red social y política, teje tu web para comunicarte con otras personas en la plataforma.
+          description_another: Este usuario tiene %{score} seguidores.
+          description_own: "%{score} usuarios te están siguiendo."
+          name: Seguidores
+          next_level_in: '¡Consigue %{score} usuarios más para seguirte y alcanzar el siguiente nivel!'
+          unearned_another: Este usuario no tiene seguidores todavía.
+          unearned_own: Aún no tienes seguidores
+        index:
+          badge_title: "%{name} credencial"
+          how: Como puedes ganarlo
+          page_description: Las insignias son reconocimientos a las acciones de los participantes y al progreso en la plataforma. A medida que comiences a descubrir, participar e interactuar en la plataforma, ganarás diferentes insignias. Aquí está la lista de insignias y algunas formas en que puedes ganarlas.
+          title: Insignias
         invitations:
+          conditions:
+            - Use el enlace "invitar amigos" en su página de usuario para invitar a sus amigos
+            - Personaliza, si quieres, el mensaje que estás enviando.
+            - Subirás de nivel enviando invitaciones y registrándolas.
+          description: Este distintivo se otorga cuando ha invitado a algunas personas y han pasado un poco de tiempo para registrarse en %{organization_name} y convertirse en participantes. Gracias por hacer de %{organization_name} a conocer a otros y ayudar a ampliar la comunidad!
           description_another: Este usuario ha invitado a %{score} usuarios.
           description_own: Has invitado a %{score} usuarios.
-          explanation: Los usuarios obtienen esta insignia invitando a otros usuarios.
           name: Invitaciones
           next_level_in: '¡Invita %{score} usuarios más a alcanzar el siguiente nivel!'
           unearned_another: Este usuario aún no ha invitado a ningún usuario.
@@ -392,6 +431,14 @@ es-PY:
       description: Las insignias son reconocimientos de las acciones de los participantes y el progreso en la plataforma. A medida que comienzas a descubrir, participar e interactuar en la plataforma, ganarás diferentes insignias.
       level: Nivel %{level}
       reached_top: Has alcanzado el nivel superior para esta insignia.
+    groups:
+      create:
+        error: Ha habido un problema creando la organización.
+        success: Organización creada con éxito
+      new:
+        create_user_group: Crear organizacion
+        new_user_group: Nueva organizacion
+      no_user_groups: Aún no pertenece a ninguna organización.
     invitations:
       create:
         error: Hubo algunos problemas al invitar a tus amigos
@@ -404,6 +451,13 @@ es-PY:
         invitations_title: '¿Crees que se deberían escuchar más voces en %{organization_name}?'
         invite: Invitación
         visit_your_profile: Visita tu perfil
+    last_activities:
+      activities:
+        no_activities_warning: Ninguna actividad
+      all: Todos los tipos de actividad
+      index:
+        last_activity: Última actividad
+        resource_type: Tipo
     log:
       base_presenter:
         create: "%{user_name} creó %{resource_name}"
@@ -425,6 +479,8 @@ es-PY:
           not_found: 'No se encontró el tipo de ámbito en la base de datos (ID: %{id})'
     managed_users:
       expired_session: La sesión de suplantación actual ha caducado.
+    members:
+      no_members: Este grupo de usuarios aún no tiene ningún miembro.
     menu:
       home: Inicio
       more_information: Más información
@@ -456,6 +512,10 @@ es-PY:
           title: Iniciar una conversación
         update:
           error: Mensaje no enviado. Inténtalo más tarde
+    metrics:
+      users:
+        object: usuarios
+        title: Usuarios
     newsletter_mailer:
       newsletter:
         note: Has recibido este mensaje porque estás suscrito a boletines de noticias en %{organization_name}. Puedes cambiar la configuración en tu <a href="%{link}">página de notificaciones</a>.
@@ -515,10 +575,13 @@ es-PY:
         hero:
           participate: Participar
           welcome: Bienvenido a %{organization}!
+        metrics:
+          headline: Participación en figuras
         statistics:
           answers_count: Encuestas completadas
           assemblies_count: Asambleas
           comments_count: Comentarios
+          conferences_count: Conferencias
           debates_count: Debates
           endorsements_count: Adhesiones
           headline: Estado actual de %{organization}
@@ -561,14 +624,22 @@ es-PY:
       deleted: Usuario eliminado
       view: Ver
     profiles:
-      default_officialization_text: Esta persona participante está verificada públicamente. Se ha verificado que su nombre o cargo corresponde con su nombre real y rol
+      default_officialization_text_for_user_groups: Este grupo de usuarios se verifica públicamente, su nombre se ha verificado para que se corresponda con su nombre real
+      default_officialization_text_for_users: Esta persona participante está verificada públicamente. Se ha verificado que su nombre o cargo corresponde con su nombre real y rol
       show:
         badges: Insignias
         conversations: Conversaciones
         followers: Seguidores
         following: Sigue
+        groups: Organizaciones
+        members: Miembros
         notifications: Notificaciones
+      sidebar:
+        badges:
+          info: Las insignias se obtienen realizando una actividad específica en la plataforma.
+          title: Insignias
       user:
+        create_user_group: Crear organizacion
         edit_profile: Editar perfil
     reported_mailer:
       hide:
@@ -637,13 +708,47 @@ es-PY:
       version_author:
         deleted: Usuario eliminado
   devise:
+    confirmations:
+      confirmed: Su dirección de correo electrónico ha sido confirmada con éxito.
+      new:
+        resend_confirmation_instructions: Reenviar las instrucciones de confirmación
+      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo electrónico en unos minutos.
+      send_paranoid_instructions: Si su dirección de correo electrónico existe en nuestra base de datos, recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo electrónico en unos minutos.
+    failure:
+      already_authenticated: Ya has iniciado sesión.
+      inactive: Tu cuenta aún no está activada.
+      invalid: '%{authentication_keys} inválido o contraseña.'
+      invited: Tienes una invitación pendiente, acéptala para terminar de crear tu cuenta.
+      last_attempt: Tienes un intento más antes de que tu cuenta se bloquee.
+      locked: Tu cuenta esta bloqueada.
+      not_found_in_database: '%{authentication_keys} inválido o contraseña.'
+      timeout: Su sesión expiró Por favor, inicia sesión de nuevo para continuar.
+      unauthenticated: Debes iniciar sesión o registrarte antes de continuar.
     invitations:
       edit:
         header: Termina de crear tu cuenta
         nickname_help: Tu identificador único en %{organization}.
         submit_button: Guardar
         subtitle: Si aceptas la invitación, por favor establece tu nombre de usuario/a y contraseña.
+      invitation_removed: Tu invitación fue eliminada.
+      invitation_token_invalid: '¡El token de invitación proporcionado no es válido!'
+      new:
+        header: Enviar invitacion
+        submit_button: Envia una invitacion
+      no_invitations_remaining: No quedan invitaciones
+      send_instructions: Se envió un correo electrónico de invitación a %{email}.
+      updated: Su contraseña fue establecida exitosamente Ya has iniciado sesión.
+      updated_not_active: Su contraseña fue establecida exitosamente
     mailer:
+      confirmation_instructions:
+        action: Confirmar mi cuenta
+        greeting: Bienvenido %{recipient}!
+        instruction: 'Puede confirmar el correo electrónico de su cuenta a través del siguiente enlace:'
+        subject: Instrucciones de confirmación
+      email_changed:
+        greeting: Hola %{recipient}!
+        message: Nos contactamos para notificarle que su correo electrónico se cambiará a %{email}.
+        subject: Correo electrónico cambiado
       invitation_instructions:
         accept: Aceptar invitación
         accept_until: Esta invitación caducará el día %{due_date}.
@@ -658,6 +763,7 @@ es-PY:
         someone_invited_you: Alguien te ha invitado a %{application}. Puedes aceptar la invitación a través del siguiente enlace.
         someone_invited_you_as_admin: Alguien te ha invitado como administrador de %{application}, puedes aceptar a través del siguiente enlace.
         someone_invited_you_as_private_user: Alguien te ha invitado como usuario_privado de %{application}, puedes aceptarlo a través del siguiente enlace.
+        subject: Instrucciones de invitación
       invite_admin:
         subject: Has sido invitado para gestionar %{organization}
       invite_collaborator:
@@ -674,20 +780,101 @@ es-PY:
         greeting: '¡Hola %{recipient}!'
         message: Nos ponemos en contacto contigo para notificarte que tu contraseña ha sido cambiada correctamente.
         subject: Contraseña modificada
+      reset_password_instructions:
+        action: Cambiar mi contraseña
+        greeting: Hola %{recipient}!
+        instruction: Alguien ha solicitado un enlace para cambiar su contraseña, y puede hacerlo a través del siguiente enlace.
+        instruction_2: Si no lo solicitó, ignore este correo electrónico.
+        instruction_3: Su contraseña no cambiará hasta que acceda al enlace de arriba y cree una nueva.
+        subject: Restablecer instrucciones de contraseña
+      unlock_instructions:
+        action: Desbloquear mi cuenta
+        greeting: Hola %{recipient}!
+        instruction: 'Haga clic en el siguiente enlace para desbloquear su cuenta:'
+        message: Su cuenta ha sido bloqueada debido a una cantidad excesiva de intentos de inicio de sesión infructuosos.
+        subject: Desbloquear instrucciones
+    omniauth_callbacks:
+      failure: No se pudo autenticar desde %{kind} porque "%{reason}".
+      success: Se ha autenticado correctamente desde la cuenta %{kind}.
+    passwords:
+      edit:
+        change_my_password: Cambiar mi contraseña
+        change_your_password: cambia tu contraseña
+        confirm_new_password: Confirmar nueva contraseña
+        new_password: Contraseña
+      new:
+        forgot_your_password: '¿Olvidaste tu contraseña?'
+        send_me_reset_password_instructions: Enviarme instrucciones para restablecer la contraseña
+      no_token: No puede acceder a esta página sin venir de un correo electrónico de restablecimiento de contraseña. Si proviene de un correo electrónico de restablecimiento de contraseña, asegúrese de haber utilizado la URL completa provista.
+      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo restablecer su contraseña en unos minutos.
+      send_paranoid_instructions: Si su dirección de correo electrónico existe en nuestra base de datos, recibirá un enlace de recuperación de contraseña en su dirección de correo electrónico en unos minutos.
+      updated: Tu contraseña ha sido cambiada exitosamente. Ya has iniciado sesión.
+      updated_not_active: Tu contraseña ha sido cambiada exitosamente.
+    registrations:
+      destroyed: '¡Adiós! Su cuenta ha sido cancelada exitosamente. Esperamos volver a verte pronto.'
+      edit:
+        are_you_sure: '¿Estás seguro?'
+        cancel_my_account: Cancelar mi cuenta
+        currently_waiting_confirmation_for_email: 'En espera de confirmación para: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: déjelo en blanco si no quiere cambiarlo
+        title: Editar %{resource}
+        unhappy: '¿Infeliz?'
+        update: Actualizar
+        we_need_your_current_password_to_confirm_your_changes: necesitamos su contraseña actual para confirmar sus cambios
+      new:
+        sign_up: Regístrate
+      signed_up: '¡Bienvenido! Usted se ha registrado exitosamente.'
+      signed_up_but_inactive: Usted se ha registrado exitosamente. Sin embargo, no pudimos iniciar sesión porque su cuenta aún no está activada.
+      signed_up_but_locked: Usted se ha registrado exitosamente. Sin embargo, no pudimos iniciar sesión porque su cuenta está bloqueada.
+      signed_up_but_unconfirmed: Se ha enviado un mensaje con un enlace de confirmación a su dirección de correo electrónico. Por favor, siga el enlace para activar su cuenta.
+      update_needs_confirmation: Actualizó su cuenta con éxito, pero necesitamos verificar su nueva dirección de correo electrónico. Verifique su correo electrónico y siga el enlace confirmar para confirmar su nueva dirección de correo electrónico.
+      updated: Su cuenta ha sido actualizada con éxito.
+    sessions:
+      already_signed_out: Firmado con éxito.
+      new:
+        sign_in: Iniciar sesión
+      signed_in: Firmado con éxito
+      signed_out: Firmado con éxito.
+    shared:
+      links:
+        back: Espalda
+        didn_t_receive_confirmation_instructions: '¿No recibió las instrucciones de confirmación?'
+        didn_t_receive_unlock_instructions: '¿No recibió instrucciones de desbloqueo?'
+        forgot_your_password: '¿Olvidaste tu contraseña?'
+        sign_in: Iniciar sesión
+        sign_in_with_provider: Inicia sesión con %{provider}
+        sign_up: Regístrate
+      minimum_password_length:
+        one: "(%{count} caracteres como mínimo)"
+        other: "(%{count} caracteres como mínimo)"
+    unlocks:
+      new:
+        resend_unlock_instructions: Reenviar instrucciones de desbloqueo
+      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo desbloquear su cuenta en unos minutos.
+      send_paranoid_instructions: Si su cuenta existe, recibirá un correo electrónico con instrucciones sobre cómo desbloquearla en unos minutos.
+      unlocked: Su cuenta ha sido desbloqueada con éxito. Por favor inicie sesión para continuar.
   doorkeeper:
     scopes:
       public: Tu información pública
   errors:
     messages:
+      already_confirmed: ya fue confirmado, intente iniciar sesión
+      confirmation_period_expired: necesita ser confirmado dentro de %{period}, por favor solicite uno nuevo
       content_type_whitelist_error: el tipo de archivo no es válido
       cycle_detected: el padre de un ámbito no puede ser uno de sus descendientes
+      expired: ha expirado, solicite uno nuevo
       file_size_is_less_than_or_equal_to: el tamaño del archivo debe ser menor que o igual a %{count}
-      long_words: contiene palabras que son demasiado largas
-      must_start_with_caps: debe comenzar con mayúsculas
+      long_words: contiene palabras que son demasiado largas (más de 35 caracteres)
+      must_start_with_caps: debe comenzar con una letra mayúscula
       nesting_too_deep: no puede estar dentro de una subcategoría
-      too_many_marks: hay demasiados signos de puntuación
-      too_much_caps: hay demasiadas mayúsculas
-      too_short: es demasiado corto
+      not_found: extraviado
+      not_locked: no estaba bloqueado
+      not_saved:
+        one: '1 error ha impedido que se guarde este %{resource}:'
+        other: "%{count} errores prohibieron que se guarde este %{resource}:"
+      too_many_marks: está usando demasiados signos de puntuación consecutivos (por ejemplo,! y?)
+      too_much_caps: está usando demasiadas letras mayúsculas (más del 25% del texto)
+      too_short: es demasiado corto (menos de 15 caracteres)
   forms:
     required: Obligatorio
   invisible_captcha:
@@ -772,6 +959,10 @@ es-PY:
       day_of_year: "%d/%m/%y"
       decidim_day_of_year: "%d %B %Y"
       decidim_short: "%d/%m/%Y %H:%M"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
       time_of_day: "%H:%M"
   views:
     pagination:

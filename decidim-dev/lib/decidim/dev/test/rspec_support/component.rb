@@ -75,7 +75,7 @@ module Decidim
       end
 
       def self.user_collection(user)
-        where(decidim_author_id: user.id)
+        where(decidim_author_id: user.id, decidim_author_type: "Decidim::User")
       end
 
       def self.export_serializer
@@ -155,7 +155,8 @@ RSpec.configure do |config|
           t.integer :coauthorships_count, null: false, default: 0
 
           t.references :decidim_component, index: false
-          t.references :decidim_author, index: false
+          t.integer :decidim_author_id, index: false
+          t.string :decidim_author_type, index: false
           t.references :decidim_category, index: false
           t.references :decidim_scope, index: false
 

@@ -28,11 +28,18 @@ module Decidim
         private
 
         def create_post!
-          @post = Post.create!(
+          attributes = {
             title: @form.title,
             body: @form.body,
             component: @form.current_component,
-            decidim_author_id: @current_user.id
+            author: @current_user
+          }
+
+          @post = Decidim.traceability.create!(
+            Post,
+            @current_user,
+            attributes,
+            visibility: "all"
           )
         end
 

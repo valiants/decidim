@@ -17,6 +17,7 @@ module Decidim
       include Decidim::Searchable
       include Decidim::Traceable
       include Decidim::Loggable
+      include Decidim::Hashtaggable
 
       belongs_to :organizer, foreign_key: "organizer_id", class_name: "Decidim::User", optional: true
       has_many :registrations, class_name: "Decidim::Meetings::Registration", foreign_key: "decidim_meeting_id", dependent: :destroy
@@ -40,6 +41,8 @@ module Decidim
                                       .where("(private_meeting = ? and decidim_meetings_registrations.decidim_user_id = ?)
                                     or private_meeting = ? or (private_meeting = ? and transparent = ?)", true, user, false, true, true).distinct
                                   }
+
+      scope :visible, -> { where("decidim_meetings_meetings.private_meeting != ? OR decidim_meetings_meetings.transparent = ?", true, true) }
 
       searchable_fields({
                           scope_id: :decidim_scope_id,

@@ -14,9 +14,6 @@ uk:
         password_confirmation: Підтвердьте свій пароль
         personal_url: Особиста веб-адреса
         remove_avatar: Видалити аватар
-        user_group_document_number: Номер документа організації
-        user_group_name: Назва організації
-        user_group_phone: Телефон організації
     models:
       decidim/attachment_created_event: Вкладений файл
       decidim/component_published_event: Діюча складова
@@ -30,9 +27,6 @@ uk:
         password: Пароль
         password_confirmation: Підтвердження паролю
         remember_me: Запам'ятати мене
-        user_group_document_number: Номер документа організації
-        user_group_name: Назва організації
-        user_group_phone: Телефон організації
     models:
       decidim/user:
         one: Учасник
@@ -258,8 +252,6 @@ uk:
           sign_up: Зареєструватися
           sign_up_as:
             legend: Зареєструватися як
-            user: Приватна особа
-            user_group: Організація / колектив
           subtitle: Зареєструйтесь, щоб брати участь у обговореннях та підтримувати пропозиції.
           terms: умови участі
           tos_agreement: Реєструючись, ви приймаєте %{link}.
@@ -539,7 +531,7 @@ uk:
       deleted: Видалений учасник
       view: Переглянути
     profiles:
-      default_officialization_text: Особу цього учасника прилюдно підтверджено, його ім'я чи роль перевірено на відповідність його справжньому імені та ролі
+      default_officialization_text_for_users: Особу цього учасника прилюдно підтверджено, його ім'я чи роль перевірено на відповідність його справжньому імені та ролі
       show:
         conversations: Бесіди
         followers: Ті, хто стежить
@@ -650,6 +642,9 @@ uk:
         greeting: Доброго дня, %{recipient}!
         message: Ми пишемо вам, щоб повідомити про те, що ваш пароль був змінений.
         subject: Пароль змінено
+    passwords:
+      edit:
+        new_password: Пароль
   doorkeeper:
     scopes:
       public: Оприлюднені відомості про вас.
@@ -658,12 +653,7 @@ uk:
       content_type_whitelist_error: цей тип файлу неприпустимий
       cycle_detected: батько обсягу не може бути одним з його нащадків
       file_size_is_less_than_or_equal_to: розмір файлу має бути меншим або рівним %{count}
-      long_words: містить занадто довгі слова
-      must_start_with_caps: має починатися з великих літер
       nesting_too_deep: не може бути всередині підкатегорії
-      too_many_marks: містить забагато знаків оклику або питання
-      too_much_caps: містить забагато великих літер
-      too_short: занадто короткий
   forms:
     required: Обов'язкове поле
   invisible_captcha:

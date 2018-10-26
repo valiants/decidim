@@ -7,6 +7,15 @@ if !Rails.env.production? || ENV["SEED"]
 
   seeds_root = File.join(__dir__, "seeds")
 
+  # Since we usually migrate and seed in the same process, make sure
+  # that we don't have invalid or cached information after a migration.
+  decidim_tables = ActiveRecord::Base.connection.tables.select do |table|
+    table.starts_with?("decidim_")
+  end
+  decidim_tables.map do |table|
+    table.tr("_", "/").classify.safe_constantize
+  end.compact.each(&:reset_column_information)
+
   organization = Decidim::Organization.first || Decidim::Organization.create!(
     name: Faker::Company.name,
     twitter_handler: Faker::Hipster.word,
@@ -22,7 +31,8 @@ if !Rails.env.production? || ENV["SEED"]
     available_locales: Decidim.available_locales,
     reference_prefix: Faker::Name.suffix,
     available_authorizations: Decidim.authorization_workflows.map(&:name),
-    tos_version: Time.current
+    tos_version: Time.current,
+    badges_enabled: true
   )
 
   if organization.top_scopes.none?
@@ -129,14 +139,18 @@ if !Rails.env.production? || ENV["SEED"]
     [nil, Time.current].each do |verified_at|
       user_group = Decidim::UserGroup.create!(
         name: Faker::Company.unique.name,
-        document_number: Faker::Number.number(10),
-        phone: Faker::PhoneNumber.phone_number,
-        verified_at: verified_at,
+        nickname: Faker::Twitter.unique.screen_name,
+        extended_data: {
+          document_number: Faker::Number.number(10),
+          phone: Faker::PhoneNumber.phone_number,
+          verified_at: verified_at
+        },
         decidim_organization_id: user.organization.id
       )
 
       Decidim::UserGroupMembership.create!(
         user: user,
+        role: "creator",
         user_group: user_group
       )
     end

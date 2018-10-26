@@ -36,6 +36,7 @@ pl:
         organization_url: Adres organizacji
         redirect_uri: Przekierowanie URI
       organization:
+        badges_enabled: Włącz odznaki
         cta_button_path: Ścieżka przycisku wezwania do działania
         cta_button_text: Tekst przycisku wezwania do działania
         default_locale: Domena domyślna
@@ -103,9 +104,6 @@ pl:
         organization_url: Adres organizacji
         redirect_uri: Przekierowanie URI
         site: Stronie internetowej
-  date:
-    formats:
-      datepicker: "%m / %d / %Y"
   decidim:
     admin:
       actions:
@@ -614,6 +612,7 @@ pl:
         new:
           create: Zapraszam
           title: Zaproś użytkownika jako administratora
+      view_public_page: Zobacz stronę publiczną
     forms:
       errors:
         impersonate_user:
@@ -654,7 +653,3 @@ pl:
           title: Ustawienia
         users:
           title: Użytkownicy
-  time:
-    formats:
-      datepicker: "%m / %d / %Y"
-      timepicker: "%m / %d / %Y %H:%M"

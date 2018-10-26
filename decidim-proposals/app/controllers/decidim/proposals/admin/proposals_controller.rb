@@ -61,10 +61,37 @@ module Decidim
           end
         end
 
+        def edit
+          enforce_permission_to :edit, :proposal, proposal: proposal
+          @form = form(Admin::ProposalForm).from_model(proposal)
+          @form.attachment = form(AttachmentForm).from_params({})
+        end
+
+        def update
+          enforce_permission_to :edit, :proposal, proposal: proposal
+
+          @form = form(Admin::ProposalForm).from_params(params)
+          Admin::UpdateProposal.call(@form, @proposal) do
+            on(:ok) do |_proposal|
+              flash[:notice] = I18n.t("proposals.update.success", scope: "decidim")
+              redirect_to proposals_path
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = I18n.t("proposals.update.error", scope: "decidim")
+              render :edit
+            end
+          end
+        end
+
         private
 
         def query
-          @query ||= Proposal.where(component: current_component).published.ransack(params[:q])
+          @query ||= if current_component.settings.participatory_texts_enabled?
+                       Proposal.where(component: current_component).published.order(:position).ransack(params[:q])
+                     else
+                       Proposal.where(component: current_component).published.ransack(params[:q])
+                     end
         end
 
         def proposals

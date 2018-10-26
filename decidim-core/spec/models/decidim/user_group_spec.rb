@@ -42,6 +42,14 @@ module Decidim
     end
 
     describe "validations", processing_uploads_for: Decidim::AvatarUploader do
+      context "when the document number is taken" do
+        subject { another_user_group }
+
+        let(:another_user_group) { build :user_group, organization: user_group.organization, document_number: user_group.document_number }
+
+        it { is_expected.not_to be_valid }
+      end
+
       context "when the file is too big" do
         before do
           expect(subject.avatar).to receive(:size).and_return(11.megabytes)
@@ -60,6 +68,24 @@ module Decidim
         end
 
         it { is_expected.not_to be_valid }
+      end
+
+      context "with weird characters" do
+        let(:weird_characters) do
+          %w(< > ? % & ^ * # @ ( ) [ ] = + : ; " { } \ |)
+        end
+
+        it "doesn't allow them" do
+          weird_characters.each do |character|
+            user = build(:user)
+            user.name = user.name.insert(rand(0..user.name.length), character)
+            user.nickname = user.nickname.insert(rand(0..user.nickname.length), character)
+
+            expect(user).not_to be_valid
+            expect(user.errors[:name].length).to eq(1)
+            expect(user.errors[:nickname].length).to eq(1)
+          end
+        end
       end
     end
   end

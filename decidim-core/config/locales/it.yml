@@ -14,9 +14,6 @@ it:
         password_confirmation: Conferma la tua password
         personal_url: URL personale
         remove_avatar: Rimuovi avatar
-        user_group_document_number: Numero del documento dell'organizzazione
-        user_group_name: Nome dell'organizzazione
-        user_group_phone: Telefono dell'organizzazione
     models:
       decidim/attachment_created_event: attaccamento
       decidim/component_published_event: Componente attivo
@@ -32,9 +29,6 @@ it:
         password: Password
         password_confirmation: Conferma della password
         remember_me: Ricordare password
-        user_group_document_number: Numero del documento dell'organizzazione
-        user_group_name: Nome dell'organizzazione
-        user_group_phone: Numero di telefono dell'organizzazione
     models:
       decidim/user:
         one: Utente
@@ -52,6 +46,7 @@ it:
     formats:
       decidim_short: "%d/%m/%Y"
       decidim_with_month_name: "%d %B %Y"
+      decidim_with_month_name_short: "%d %b"
   decidim:
     account:
       data_portability_export:
@@ -184,6 +179,11 @@ it:
           invalid_field: "%{field} valore %{value} non è valido."
           ok: Ok
           title: Non autorizzato
+        unconfirmed:
+          confirmation_instructions: 'Se non hai ricevuto le istruzioni di conferma puoi richiederle di nuovo:'
+          explanation_html: Per eseguire questa azione devi essere autorizzato, prima di farlo devi confermare la tua email <strong>%{email}</strong>.
+          request_confirmation_instructions: Richiedi le istruzioni di conferma
+          title: conferma la tua email
     collapsible_list:
       hidden_elements_count:
         one: e 1 altro
@@ -216,6 +216,15 @@ it:
         name: Banner dei contenuti evidenziati
       how_to_participate:
         name: Come partecipare
+      html:
+        html_content: Contenuto HTML
+        name: Blocco HTML
+      last_activity:
+        name: L'ultima attività
+        title: L'ultima attività
+        view_all: Guarda tutto
+      metrics:
+        name: Metriche dell'organizzazione
       stats:
         name: Statistiche dell'organizzazione
       sub_hero:
@@ -230,6 +239,8 @@ it:
         download_data: Scarica i dati
         download_data_description: Un file con tutte le informazioni associate all'account verrà inviato a <strong>%{user_email}</strong>
         request_data: Richiedi dati
+    datepicker:
+      help_text: 'Formato previsto: %{datepicker_format}'
     devise:
       omniauth_registrations:
         create:
@@ -250,8 +261,6 @@ it:
           sign_up: Iscriviti
           sign_up_as:
             legend: Registrati come
-            user: Individuo
-            user_group: Organizzazione / Collettivo
           subtitle: Registrati per partecipare alle discussioni e appoggiare le proposte.
           terms: Termini e condizioni di utilizzo del servizio
           tos_agreement: Iscrivendoti accetti le %{link}.
@@ -380,11 +389,41 @@ it:
         error: Si è verificato un errore in questo campo.
       remove_this_file: Rimuovere questo file
     gamification:
+      all_badges_link: Vedi tutti i badge disponibili.
       badges:
+        continuity:
+          conditions:
+            - Vieni qui spesso
+          description: Questo badge è concesso quando visiti la piattaforma in modo regolare. Ci piace averti qui intorno!
+          description_another: Questo utente si è connesso per %{score} giorni consecutivi ad un certo punto.
+          description_own: Hai collegato per %{score} giorni consecutivi ad un certo punto.
+          name: Continuità
+          next_level_in: Connetti per %{score} giorni consecutivi per passare al livello successivo!
+          unearned_another: Questo utente non ha effettuato l'accesso per più di un giorno consecutivo.
+          unearned_own: Non ti sei connesso per più di un giorno consecutivo.
+        followers:
+          conditions:
+            - Essere attivi e seguire altre persone sicuramente farà sì che altre persone ti seguano.
+          description: Questo badge è concesso quando raggiungi un certo numero di follower. %{organization_name} è una rete sociale e politica, intreccia la tua rete per comunicare con altre persone nella piattaforma.
+          description_another: Questo utente ha %{score} follower.
+          description_own: "%{score} utenti ti stanno seguendo."
+          name: Seguaci
+          next_level_in: Ottieni altri %{score} utenti che ti seguono per raggiungere il livello successivo!
+          unearned_another: Questo utente non ha ancora follower.
+          unearned_own: Non hai ancora follower.
+        index:
+          badge_title: "%{name} distintivo"
+          how: Come puoi guadagnarlo
+          page_description: I badge sono riconoscimenti alle azioni dei partecipanti e ai progressi nella piattaforma. Quando inizi a scoprire, partecipare e interagire nella piattaforma, guadagnerai badge diversi. Ecco la lista dei badge e alcuni modi per guadagnarli.
+          title: badge
         invitations:
+          conditions:
+            - Usa il link "invita amici" nella tua pagina utente per invitare i tuoi amici
+            - Personalizza, se vuoi, il messaggio che stai inviando
+            - Aumenterai di livello inviando inviti e registrandoli.
+          description: Questo badge è concesso quando hai invitato alcune persone e hanno trascorso un po 'di tempo per registrarsi in %{organization_name} e diventare partecipanti. Grazie per aver reso %{organization_name} conoscere agli altri e contribuendo ad ampliare la comunità!
           description_another: Questo utente ha invitato %{score} utenti.
           description_own: Hai invitato %{score} utenti.
-          explanation: Gli utenti ottengono questo badge invitando altri utenti.
           name: inviti
           next_level_in: Invita altri %{score} utenti a raggiungere il livello successivo!
           unearned_another: Questo utente non ha ancora invitato alcun utente.
@@ -392,6 +431,14 @@ it:
       description: I badge sono riconoscimenti alle azioni dei partecipanti e ai progressi nella piattaforma. Quando inizi a scoprire, partecipare e interagire nella piattaforma, guadagnerai badge diversi.
       level: Livello %{level}
       reached_top: Hai raggiunto il livello più alto per questo badge.
+    groups:
+      create:
+        error: Si è verificato un problema durante la creazione dell'organizzazione
+        success: Organizzazione creata con successo
+      new:
+        create_user_group: Crea organizzazione
+        new_user_group: Nuova organizzazione
+      no_user_groups: Non appartiene ancora a nessuna organizzazione.
     invitations:
       create:
         error: Ci sono stati alcuni problemi durante l'invito ai tuoi amici
@@ -404,6 +451,13 @@ it:
         invitations_title: Pensi che più voci dovrebbero essere ascoltate in %{organization_name}?
         invite: Invitare
         visit_your_profile: Visita il tuo profilo
+    last_activities:
+      activities:
+        no_activities_warning: Nessuna attività
+      all: Tutti i tipi di attività
+      index:
+        last_activity: L'ultima attività
+        resource_type: genere
     log:
       base_presenter:
         create: "%{user_name} creato %{resource_name}"
@@ -425,6 +479,8 @@ it:
           not_found: 'Il tipo di ambito non è stato trovato nel database (ID: %{id})'
     managed_users:
       expired_session: La sessione di impersonazione corrente è scaduta.
+    members:
+      no_members: Questo gruppo di utenti non ha ancora nessun membro.
     menu:
       home: Home
       more_information: Ulteriori informazioni
@@ -456,6 +512,10 @@ it:
           title: Inizia una conversazione
         update:
           error: Messaggio non inviato. Riprova più tardi
+    metrics:
+      users:
+        object: utenti
+        title: utenti
     newsletter_mailer:
       newsletter:
         note: Hai ricevuto questa email perché ti sei iscritto alla newsletter su %{organization_name}. Puoi modificare le impostazioni sulla tua <a href="%{link}">pagina di notifiche</a>.
@@ -515,10 +575,13 @@ it:
         hero:
           participate: Partecipa
           welcome: Benvenuto su %{organization}!
+        metrics:
+          headline: Partecipazione in cifre
         statistics:
           answers_count: Sondaggi completati
           assemblies_count: assemblee
           comments_count: Commenti
+          conferences_count: conferenze
           debates_count: Dibattiti
           endorsements_count: Riconoscimenti
           headline: Stato attuale dell'organizzazione %{organization}
@@ -561,14 +624,22 @@ it:
       deleted: Utente eliminato
       view: vista
     profiles:
-      default_officialization_text: Questo partecipante è verificato pubblicamente, il suo nome o ruolo è stato verificato per corrispondere con il suo vero nome e ruolo
+      default_officialization_text_for_user_groups: Questo gruppo di utenti è verificato pubblicamente, il suo nome è stato verificato per corrispondere con il suo vero nome
+      default_officialization_text_for_users: Questo partecipante è verificato pubblicamente, il suo nome o ruolo è stato verificato per corrispondere con il suo vero nome e ruolo
       show:
         badges: badge
         conversations: conversazioni
         followers: Seguaci
         following: segue
+        groups: organizzazioni
+        members: Utenti
         notifications: notifiche
+      sidebar:
+        badges:
+          info: I badge vengono guadagnati eseguendo attività specifiche sulla piattaforma.
+          title: badge
       user:
+        create_user_group: Crea organizzazione
         edit_profile: Modifica Profilo
     reported_mailer:
       hide:
@@ -637,13 +708,47 @@ it:
       version_author:
         deleted: Utente eliminato
   devise:
+    confirmations:
+      confirmed: Il tuo indirizzo email è stato confermato con successo.
+      new:
+        resend_confirmation_instructions: Rispedire le istruzioni di conferma
+      send_instructions: Riceverai un'email con le istruzioni su come confermare il tuo indirizzo email in pochi minuti.
+      send_paranoid_instructions: Se il tuo indirizzo e-mail esiste nel nostro database, riceverai un'email con le istruzioni su come confermare il tuo indirizzo e-mail in pochi minuti.
+    failure:
+      already_authenticated: Sei già iscritto.
+      inactive: Il tuo account non è ancora attivato.
+      invalid: '%{authentication_keys} o password non validi.'
+      invited: Hai un invito in sospeso, accettalo per completare la creazione del tuo account.
+      last_attempt: Hai ancora un tentativo prima che il tuo account sia bloccato.
+      locked: Il tuo account è bloccato.
+      not_found_in_database: '%{authentication_keys} o password non validi.'
+      timeout: La tua sessione è scaduta. Per favore accedi di nuovo per continuare.
+      unauthenticated: È necessario accedere o registrarsi prima di continuare.
     invitations:
       edit:
         header: Completa la creazione del tuo account
         nickname_help: Il tuo identificativo univoco in %{organization}.
         submit_button: Salva
         subtitle: Se accetti l'invito, imposta il tuo nickname e password.
+      invitation_removed: Il tuo invito è stato rimosso
+      invitation_token_invalid: Il token di invito fornito non è valido!
+      new:
+        header: Spedire un invito
+        submit_button: Invia un invito
+      no_invitations_remaining: Nessun invito rimanente
+      send_instructions: Una email di invito è stata inviata a %{email}.
+      updated: La tua password è stata impostata correttamente. Ora hai effettuato l'accesso.
+      updated_not_active: La tua password è stata impostata correttamente.
     mailer:
+      confirmation_instructions:
+        action: Conferma il mio account
+        greeting: Benvenuto %{recipient}!
+        instruction: 'Puoi confermare l''email del tuo account tramite il link sottostante:'
+        subject: Istruzioni di conferma
+      email_changed:
+        greeting: Ciao %{recipient}!
+        message: Ti stiamo contattando per informarti che la tua email è stata modificata a %{email}.
+        subject: Email cambiata
       invitation_instructions:
         accept: Accetta l'invito
         accept_until: Questo invito scade il %{due_date}.
@@ -658,6 +763,7 @@ it:
         someone_invited_you: Qualcuno ti ha invitato a %{application}. Puoi accettare l'invito facendo clic sul link sottostante.
         someone_invited_you_as_admin: Qualcuno ti ha invitato come amministratore di %{application}. Puoi accettare l'invito facendo clic sul link sottostante.
         someone_invited_you_as_private_user: Qualcuno ti ha invitato come private_user di %{application}, puoi accettarlo tramite il link sottostante.
+        subject: Istruzioni di invito
       invite_admin:
         subject: Sei stato invitato per la gestione della sezione relativa all'organizzazione %{organization}
       invite_collaborator:
@@ -674,20 +780,101 @@ it:
         greeting: Ciao %{recipient}!
         message: Ti contattiamo per informarti che la tua password è stata modificata.
         subject: Password modificata
+      reset_password_instructions:
+        action: Cambia la mia password
+        greeting: Ciao %{recipient}!
+        instruction: Qualcuno ha richiesto un link per cambiare la tua password, e puoi farlo attraverso il link qui sotto.
+        instruction_2: Se non lo hai richiesto, ignora questa email.
+        instruction_3: La tua password non cambierà fino a quando non accedi al link sopra e ne crei uno nuovo.
+        subject: Reimposta le istruzioni della password
+      unlock_instructions:
+        action: Sblocca il mio account
+        greeting: Ciao %{recipient}!
+        instruction: 'Clicca sul link sottostante per sbloccare il tuo account:'
+        message: Il tuo account è stato bloccato a causa di una quantità eccessiva di tentativi di accesso non riusciti.
+        subject: Sblocca le istruzioni
+    omniauth_callbacks:
+      failure: Impossibile autenticare da %{kind} perché "%{reason}".
+      success: Autenticato con successo da %{kind} account.
+    passwords:
+      edit:
+        change_my_password: Cambia la mia password
+        change_your_password: Cambia la tua password
+        confirm_new_password: Conferma la nuova password
+        new_password: Nuova password
+      new:
+        forgot_your_password: Hai dimenticato la password?
+        send_me_reset_password_instructions: Inviami le istruzioni per la reimpostazione della password
+      no_token: Non è possibile accedere a questa pagina senza l'invio di un'email di reimpostazione della password. Se provieni da un'email di reimpostazione della password, assicurati di aver utilizzato l'URL completo fornito.
+      send_instructions: Riceverai un'email con le istruzioni su come reimpostare la password in pochi minuti.
+      send_paranoid_instructions: Se il tuo indirizzo e-mail esiste nel nostro database, riceverai un link per il recupero della password al tuo indirizzo e-mail in pochi minuti.
+      updated: La tua password è stata cambiata con successo. Ora hai effettuato l'accesso.
+      updated_not_active: La tua password è stata cambiata con successo.
+    registrations:
+      destroyed: Ciao! Il tuo account è stato cancellato con successo. Speriamo di rivederti presto.
+      edit:
+        are_you_sure: Sei sicuro?
+        cancel_my_account: Cancellare il mio account
+        currently_waiting_confirmation_for_email: 'Conferma in attesa per: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: lasciare vuoto se non si desidera modificarlo
+        title: Modifica %{resource}
+        unhappy: Infelice?
+        update: Aggiornare
+        we_need_your_current_password_to_confirm_your_changes: abbiamo bisogno della tua password corrente per confermare le tue modifiche
+      new:
+        sign_up: Iscriviti
+      signed_up: Benvenuto! Ti sei registrato con successo.
+      signed_up_but_inactive: Ti sei registrato con successo. Tuttavia, non siamo riusciti ad accedere perché il tuo account non è ancora attivo.
+      signed_up_but_locked: Ti sei registrato con successo. Tuttavia, non siamo riusciti ad accedere perché il tuo account è bloccato.
+      signed_up_but_unconfirmed: Un messaggio con un link di conferma è stato inviato al tuo indirizzo email. Segui il link per attivare il tuo account.
+      update_needs_confirmation: Hai aggiornato correttamente il tuo account, ma dobbiamo verificare il tuo nuovo indirizzo email. Controlla la tua email e segui il link di conferma per confermare il tuo nuovo indirizzo email.
+      updated: Il tuo account è stato aggiornato correttamente.
+    sessions:
+      already_signed_out: Sottoscritto con successo.
+      new:
+        sign_in: Accesso
+      signed_in: Firmato correttamente
+      signed_out: Sottoscritto con successo.
+    shared:
+      links:
+        back: Indietro
+        didn_t_receive_confirmation_instructions: Non hai ricevuto le istruzioni di conferma?
+        didn_t_receive_unlock_instructions: Non hai ricevuto le istruzioni di sblocco?
+        forgot_your_password: Hai dimenticato la password?
+        sign_in: Accesso
+        sign_in_with_provider: Accedi con %{provider}
+        sign_up: Iscriviti
+      minimum_password_length:
+        one: "(Minimo%{count} caratteri)"
+        other: "(Minimo%{count} caratteri)"
+    unlocks:
+      new:
+        resend_unlock_instructions: Rinvia le istruzioni di sblocco
+      send_instructions: Riceverai un'email con le istruzioni su come sbloccare il tuo account in pochi minuti.
+      send_paranoid_instructions: Se il tuo account esiste, riceverai un'email con le istruzioni su come sbloccarlo in pochi minuti.
+      unlocked: Il tuo account è stato sbloccato correttamente. Per favore accedi per continuare.
   doorkeeper:
     scopes:
       public: Le tue informazioni pubbliche.
   errors:
     messages:
+      already_confirmed: era già confermato, per favore prova ad accedere
+      confirmation_period_expired: deve essere confermato entro %{period}, si prega di richiederne uno nuovo
       content_type_whitelist_error: il tipo di file non è valido
       cycle_detected: Il genitore di un ambito non può essere uno dei suoi discendenti
+      expired: è scaduto, si prega di richiederne uno nuovo
       file_size_is_less_than_or_equal_to: la dimensione del file deve essere inferiore o uguale a %{count}
-      long_words: contiene parole troppo lunghe
-      must_start_with_caps: deve iniziare con i cappucci
+      long_words: contiene parole troppo lunghe (oltre 35 caratteri)
+      must_start_with_caps: deve iniziare con una lettera maiuscola
       nesting_too_deep: Non può stare all'interno di una subcategoria
-      too_many_marks: sta usando troppi marchi
-      too_much_caps: sta usando troppi cappucci
-      too_short: è troppo corto
+      not_found: non trovato
+      not_locked: non era bloccato
+      not_saved:
+        one: '1 errore ha impedito a questo %{resource} di essere salvato:'
+        other: "%{count} errori hanno impedito a questo %{resource} di essere salvato:"
+      too_many_marks: sta usando troppi segni di punteggiatura consecutivi (ad esempio! e?)
+      too_much_caps: usa troppe lettere maiuscole (oltre il 25% del testo)
+      too_short: è troppo corto (meno di 15 caratteri)
   forms:
     required: Richiesto
   invisible_captcha:
@@ -772,6 +959,10 @@ it:
       day_of_year: "%d.%m.%y"
       decidim_day_of_year: "%d %B %Y"
       decidim_short: "%d/%m/%Y %H:%M"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
       time_of_day: "%H:%M"
   views:
     pagination:

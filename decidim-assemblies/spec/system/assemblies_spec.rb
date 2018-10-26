@@ -66,6 +66,7 @@ describe "Assemblies", type: :system do
 
   context "when there are some published assemblies" do
     let!(:assembly) { base_assembly }
+    let!(:child_assembly) { create(:assembly, parent: assembly, organization: organization) }
     let!(:promoted_assembly) { create(:assembly, :promoted, organization: organization) }
     let!(:unpublished_assembly) { create(:assembly, :unpublished, organization: organization) }
 
@@ -95,7 +96,7 @@ describe "Assemblies", type: :system do
       end
     end
 
-    it "lists all the assemblies" do
+    it "lists the parent assemblies" do
       within "#assemblies-grid" do
         within "#assemblies-grid h2" do
           expect(page).to have_content("2")
@@ -105,6 +106,7 @@ describe "Assemblies", type: :system do
         expect(page).to have_content(translated(promoted_assembly.title, locale: :en))
         expect(page).to have_selector("article.card", count: 2)
 
+        expect(page).not_to have_content(translated(child_assembly.title, locale: :en))
         expect(page).not_to have_content(translated(unpublished_assembly.title, locale: :en))
       end
     end
@@ -113,6 +115,18 @@ describe "Assemblies", type: :system do
       click_link(translated(assembly.title, locale: :en))
 
       expect(page).to have_current_path decidim_assemblies.assembly_path(assembly)
+    end
+
+    it "shows the organizational chart" do
+      within "#assemblies-chart" do
+        within ".js-orgchart" do
+          expect(page).to have_selector(".svg-chart-container")
+
+          within ".svg-chart-container" do
+            expect(page).to have_selector("g.node", count: 2)
+          end
+        end
+      end
     end
   end
 

@@ -14,9 +14,6 @@ ru:
         password_confirmation: Подтвердите свой пароль
         personal_url: Личный веб-адрес
         remove_avatar: Удалить аватар
-        user_group_document_number: Номер документа организации
-        user_group_name: Название организации
-        user_group_phone: Телефон организации
     models:
       decidim/attachment_created_event: Прикрепленный файл
       decidim/component_published_event: Действующая составляющая
@@ -30,9 +27,6 @@ ru:
         password: Пароль
         password_confirmation: Подтверждение пароля
         remember_me: Запомнить меня
-        user_group_document_number: Номер документа организации
-        user_group_name: Название организации
-        user_group_phone: Телефон организации
     models:
       decidim/user:
         one: Участник
@@ -174,7 +168,6 @@ ru:
         incomplete:
           cancel: Отменить
           explanation: 'Несмотря на то, что вы подтвердили свою личность с помощью «%{authorization}», мы просим вас заново подтвердить свою личность, потому что нам не хватает следующих данных:'
-          invalid_field: "%{field}"
           reauthorize: Заново подтвердить свою личность
           title: Пожалуйста, заново подтвердите свою личность
         missing:
@@ -258,8 +251,6 @@ ru:
           sign_up: Зарегистрироваться
           sign_up_as:
             legend: Зарегистрироваться как
-            user: Частное лицо
-            user_group: Организация/коллектив
           subtitle: Зарегистрируйтесь, чтобы участвовать в обсуждениях и поддерживать предложения.
           terms: условия участия
           tos_agreement: Регистрируясь, вы принимаете %{link}.
@@ -539,7 +530,7 @@ ru:
       deleted: Удаленный участник
       view: Посмотреть
     profiles:
-      default_officialization_text: Личность этого участника подтверждена при всём честном народе, его / ее имя или роль проверены на соответствие его / ее реальному имени и роли
+      default_officialization_text_for_users: Личность этого участника подтверждена при всём честном народе, его / ее имя или роль проверены на соответствие его / ее реальному имени и роли
       show:
         conversations: Беседы
         followers: Читают
@@ -650,6 +641,9 @@ ru:
         greeting: Здравствуйте, %{recipient}!
         message: Мы пишем вам, чтобы уведомить вас о том, что ваш пароль был изменен.
         subject: Пароль изменен
+    passwords:
+      edit:
+        new_password: Пароль
   doorkeeper:
     scopes:
       public: Обнародованные сведения о вас.
@@ -658,12 +652,7 @@ ru:
       content_type_whitelist_error: этот тип файла недопустим
       cycle_detected: родитель охвата не может быть одним из его потомков
       file_size_is_less_than_or_equal_to: размер файла должен быть меньше или равен %{count}
-      long_words: содержит слишком длинные слова
-      must_start_with_caps: должно начинаться с заглавных букв
       nesting_too_deep: не может быть внутри подкатегории
-      too_many_marks: содержит слишком много знаков вопроса или восклицания
-      too_much_caps: содержит слишком много заглавных букв
-      too_short: слишком короткое
   forms:
     required: Обязательно
   invisible_captcha:

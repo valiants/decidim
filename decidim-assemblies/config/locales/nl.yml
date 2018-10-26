@@ -238,6 +238,9 @@ nl:
               not_ceased: Niet opgehouden
             filter_by: Filteren op
             search: Zoeken
+        content_blocks:
+          highlighted_assemblies:
+            max_results: Maximum aantal elementen dat kan worden weergegeven
       assembly_members:
         index:
           members: leden
@@ -258,6 +261,8 @@ nl:
         public: Openbaar
       index:
         title: Events
+      last_activity:
+        new_assembly: Nieuwe vergadering
       pages:
         home:
           highlighted_assemblies:
@@ -329,7 +334,9 @@ nl:
         assembly:
           take_part: Deelnemen
         index:
+          organizational_chart: Organisatieschema
           promoted_assemblies: Uitgelichte events
+          reset_chart: Reset
         order_by_assemblies:
           assemblies:
             one: "%{count} bijeenkomst"

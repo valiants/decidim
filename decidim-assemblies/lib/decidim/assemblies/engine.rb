@@ -68,7 +68,7 @@ module Decidim
           assemblies = OrganizationPublishedAssemblies.new(view_context.current_organization, view_context.current_user)
                                                       .query.distinct
                                                       .joins(:members)
-                                                      .merge(Decidim::AssemblyMember.where(user: view_context.user))
+                                                      .merge(Decidim::AssemblyMember.where(user: view_context.profile_holder))
                                                       .reorder(title: :asc)
 
           next unless assemblies.any?
@@ -89,7 +89,21 @@ module Decidim
         Decidim.content_blocks.register(:homepage, :highlighted_assemblies) do |content_block|
           content_block.cell = "decidim/assemblies/content_blocks/highlighted_assemblies"
           content_block.public_name_key = "decidim.assemblies.content_blocks.highlighted_assemblies.name"
+          content_block.settings_form_cell = "decidim/assemblies/content_blocks/highlighted_assemblies_settings_form"
+
+          content_block.settings do |settings|
+            settings.attribute :max_results, type: :integer, default: 4
+          end
         end
+      end
+
+      initializer "decidim_assemblies.register_metrics" do
+        Decidim.metrics_registry.register(
+          :assemblies,
+          "Decidim::Assemblies::Metrics::AssembliesMetricManage",
+          Decidim::MetricRegistry::NOT_HIGHLIGHTED,
+          1
+        )
       end
     end
   end

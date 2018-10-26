@@ -23,7 +23,15 @@ module Decidim
         return broadcast(:invalid) unless @proposal.authored_by?(@current_user)
 
         transaction do
-          @proposal.update published_at: Time.current
+          Decidim.traceability.perform_action!(
+            "publish",
+            @proposal,
+            @current_user,
+            visibility: "public-only"
+          ) do
+            @proposal.update published_at: Time.current
+          end
+
           increment_scores
           send_notification
           send_notification_to_participatory_space
@@ -66,8 +74,12 @@ module Decidim
       end
 
       def increment_scores
-        @proposal.authors.each do |author|
-          Decidim::Gamification.increment_score(author, :proposals)
+        @proposal.coauthorships.find_each do |coauthorship|
+          if coauthorship.user_group
+            Decidim::Gamification.increment_score(coauthorship.user_group, :proposals)
+          else
+            Decidim::Gamification.increment_score(coauthorship.author, :proposals)
+          end
         end
       end
     end
