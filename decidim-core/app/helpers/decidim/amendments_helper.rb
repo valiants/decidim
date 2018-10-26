@@ -4,7 +4,9 @@ module Decidim
   # A Helper to render and link amendments to resources.
   module AmendmentsHelper
     def amend_button_for(amendable)
-      cell "decidim/amendable/amend_button_card", amendable if amendable.amendable?
+      if amendable.amendable?
+        cell "decidim/amendable/amend_button_card", amendable
+      end
     end
 
     # Renders the emendations of a amendable resource that includes the

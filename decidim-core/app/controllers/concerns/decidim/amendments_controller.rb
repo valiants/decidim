@@ -56,6 +56,19 @@ module Decidim
       end
     end
 
+      Decidim::Amendable::Reject.call(@form) do
+        on(:ok) do
+          flash[:notice] = t("rejected.success", scope: "decidim.amendments")
+        end
+
+        on(:invalid) do
+          flash[:alert] = t("rejected.error", scope: "decidim.amendments")
+        end
+
+        redirect_to Decidim::ResourceLocatorPresenter.new(@emendation).path
+      end
+    end
+
     def review
       params = emendation.attributes
       params[:id] = emendation.amendment.id
